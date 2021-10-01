@@ -1,0 +1,43 @@
+@import "/src/assets/scss/shared";
+
+.apply {
+  @include display-flex(column) {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  &__content {
+  }
+
+  &__footer {
+    @include display-flex(column) {
+      margin-top: auto;
+    }
+  }
+
+  &__pp {
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #999999;
+    margin-bottom: 8px;
+
+    a {
+      color: #999999;
+    }
+  }
+}
+
+.button__continue {
+  @include display-flex {
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: #111111;
+    color: #ffffff;
+    border: none;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+  }
+}

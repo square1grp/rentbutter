@@ -15,12 +15,14 @@
 }
 
 .modal {
-  width: 360px;
-  height: 603px;
-  background-color: #fff;
-  border-radius: 7px;
-  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
-  padding: 30px;
+  @include display-flex(column) {
+    width: 360px;
+    height: 603px;
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+  }
 }
 
 .fade {

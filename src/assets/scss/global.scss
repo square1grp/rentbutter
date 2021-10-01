@@ -1,12 +1,17 @@
 @import "shared";
 
 body {
-  margin: 0px;
   font-family: "Helvetica-Regular";
+  color: #666666;
   background-color: rgba(144, 144, 144, 0.98);
 
   &,
   * {
+    margin: 0px;
     box-sizing: border-box;
   }
+}
+
+b {
+  font-family: "Helvetica-Bold";
 }
