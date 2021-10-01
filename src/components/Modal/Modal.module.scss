@@ -1,0 +1,64 @@
+@use "sass:map";
+@import "/src/assets/scss/shared";
+
+.container {
+  @include display-flex {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(144, 144, 144, 0.98);
+  }
+}
+
+.modal {
+  width: 360px;
+  height: 603px;
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+}
+
+.fade {
+  &--enter {
+    opacity: 0;
+  }
+
+  &--enter-active {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &--exit {
+    opacity: 1;
+  }
+
+  &--exit-active {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+}
+
+.scale {
+  &--enter {
+    transform: scale(0.6);
+  }
+
+  &--enter-active {
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &--exit {
+    transform: scale(1);
+  }
+
+  &--exit-active {
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+  }
+}

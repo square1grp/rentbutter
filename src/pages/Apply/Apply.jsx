@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from '../../components/Layout';
 
 const Apply = () => {
   return (
-    <div className="">
+    <Layout>
       Apply
-    </div>
+    </Layout>
   );
 };
 

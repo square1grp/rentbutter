@@ -1,0 +1,26 @@
+@import "/src/assets/scss/shared";
+
+.header {
+  @include display-flex {
+    align-items: center;
+    justify-content: space-between;
+    margin: -20px -20px 14px;
+  }
+}
+
+.logo {
+  @include display-flex;
+
+  img {
+    height: 25px;
+  }
+}
+
+.button {
+  @include display-flex {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+  }
+}

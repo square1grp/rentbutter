@@ -1,0 +1,11 @@
+@import "shared";
+
+body {
+  margin: 0px;
+  font-family: "Helvetica-Regular";
+
+  &,
+  * {
+    box-sizing: border-box;
+  }
+}
