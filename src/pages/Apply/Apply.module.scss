@@ -41,4 +41,8 @@
     line-height: 20px;
     cursor: pointer;
   }
+
+  &--disabled {
+    background-color: #c3c3c3;
+  }
 }
