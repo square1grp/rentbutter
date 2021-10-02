@@ -6,10 +6,6 @@
     flex-grow: 1;
   }
 
-  &__content {
-    @include display-flex(column);
-  }
-
   &__footer {
     @include display-flex(column) {
       margin-top: auto;

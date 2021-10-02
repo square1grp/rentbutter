@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { Ready, UploadIDFront, UploadIDBack, VerifyID } from './steps';
+import {
+  Ready,
+  UploadIDFront, UploadIDBack,
+  VerifyID, VerifyIDResult
+} from './steps';
 import styles from './Apply.module.scss';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
@@ -9,17 +13,19 @@ const STEPS = {
   READY: 'READY',
   UPLOAD_ID__FRONT: 'UPLOAD_ID__FRONT',
   UPLOAD_ID__BACK: 'UPLOAD_ID__BACK',
-  VERIFY_ID: 'VERIFY_ID'
+  VERIFY_ID: 'VERIFY_ID',
+  VERIFY_ID__RESULT: 'VERIFY_ID__RESULT'
 };
 
 const Apply = () => {
-  const [step, setStep] = useState(STEPS.UPLOAD_ID__BACK);
+  const [step, setStep] = useState(STEPS.READY);
   const [isVerified, setIsVerified] = useState(false);
 
   const handleClickBack = () => {
     if (step === STEPS.UPLOAD_ID__FRONT) setStep(STEPS.READY);
     else if (step === STEPS.UPLOAD_ID__BACK) setStep(STEPS.UPLOAD_ID__FRONT);
     else if (step === STEPS.VERIFY_ID) setStep(STEPS.UPLOAD_ID__BACK);
+    else if (step === STEPS.VERIFY_ID__RESULT) setStep(STEPS.VERIFY_ID);
   };
 
   const handleClickContinue = e => {
@@ -28,6 +34,7 @@ const Apply = () => {
     if (step === STEPS.READY) setStep(STEPS.UPLOAD_ID__FRONT);
     else if (step === STEPS.UPLOAD_ID__FRONT) setStep(STEPS.UPLOAD_ID__BACK);
     else if (step === STEPS.UPLOAD_ID__BACK) setStep(STEPS.VERIFY_ID);
+    else if (step === STEPS.VERIFY_ID) setStep(STEPS.VERIFY_ID__RESULT);
   };
 
   const getButtonText = () => {
@@ -40,17 +47,17 @@ const Apply = () => {
   return (
     <Layout onBack={handleClickBack}>
       <div className={styles.apply}>
-        <div className={styles.apply__content}>
-          {step === STEPS.READY ? (
-            <Ready />
-          ) : step === STEPS.UPLOAD_ID__FRONT ? (
-            <UploadIDFront />
-          ) : step === STEPS.UPLOAD_ID__BACK ? (
-            <UploadIDBack />
-          ) : step === STEPS.VERIFY_ID ? (
-            <VerifyID />
-          ) : null}
-        </div>
+        {step === STEPS.READY ? (
+          <Ready />
+        ) : step === STEPS.UPLOAD_ID__FRONT ? (
+          <UploadIDFront />
+        ) : step === STEPS.UPLOAD_ID__BACK ? (
+          <UploadIDBack />
+        ) : step === STEPS.VERIFY_ID ? (
+          <VerifyID />
+        ) : step === STEPS.VERIFY_ID__RESULT ? (
+          <VerifyIDResult />
+        ) : null}
 
         <div className={styles.apply__footer}>
           {step === STEPS.READY ? (

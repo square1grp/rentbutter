@@ -15,7 +15,7 @@ const Ready = () => {
   }, []);
 
   return (
-    <>
+    <div className={styles.ready}>
       <div className={styles.notification}>
         <AlertIcon className={styles.notification__icon} />
 
@@ -68,7 +68,7 @@ const Ready = () => {
           </span>
         </div>
       </div>
-    </>
+    </div>
   )
 };
 
