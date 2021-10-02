@@ -1,9 +1,5 @@
 @import "/src/assets/scss/shared";
 
-.step {
-  @include display-flex(column);
-}
-
 .notification {
   @include display-flex {
     background-color: rgba($color: #ffa700, $alpha: 0.15);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Ready.module.scss';
 import { ReactComponent as AlertIcon } from '../../../../assets/images/Alert.svg';
 import { ReactComponent as GetStartedIcon } from '../../../../assets/images/Get Started.svg';
@@ -7,8 +7,15 @@ import { ReactComponent as FinancesIcon } from '../../../../assets/images/Financ
 import { ReactComponent as CreditCardIcon } from '../../../../assets/images/Credit Card.svg';
 
 const Ready = () => {
+  const checkNetworkSpeed = async () => {
+  };
+
+  useEffect(() => {
+    checkNetworkSpeed();
+  }, []);
+
   return (
-    <div className={styles.step}>
+    <>
       <div className={styles.notification}>
         <AlertIcon className={styles.notification__icon} />
 
@@ -37,6 +44,7 @@ const Ready = () => {
             className={styles.icon}
             src={imgIDHand}
             alt="A valid government issued ID"
+            width="40"
           />
 
           <span className={styles.icon__desc} >
@@ -60,7 +68,7 @@ const Ready = () => {
           </span>
         </div>
       </div>
-    </div>
+    </>
   )
 };
 
