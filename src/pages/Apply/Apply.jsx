@@ -4,7 +4,7 @@ import {
   Ready,
   UploadIDFront, UploadIDBack,
   VerifyID, VerifyIDResult,
-  InfoPersonal
+  InfoPersonal, InfoAddress
 } from './steps';
 import styles from './Apply.module.scss';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,7 @@ const STEPS = {
 };
 
 const Apply = () => {
-  const [step, setStep] = useState(STEPS.READY);
+  const [step, setStep] = useState(STEPS.INFO__ADDRESS);
   const [isVerified, setIsVerified] = useState();
 
   const formikPersonal = useFormik({
@@ -36,11 +36,34 @@ const Apply = () => {
       driverLicense: ''
     },
     validationSchema: Yup.object({
-      firstName: Yup.string().required('First Name is required'),
-      middleName: Yup.string().required('Middle Name is required'),
-      lastName: Yup.string().required('Last Name is required'),
+      firstName: Yup.string().required('First Name is required.'),
+      middleName: Yup.string().required('Middle Name is required.'),
+      lastName: Yup.string().required('Last Name is required.'),
       birthDay: Yup.string().required('Date of Birth is required.')
-    })
+    }),
+    onSubmit: () => {
+      return true;
+    }
+  });
+
+  const formikAddress = useFormik({
+    initialValues: {
+      address: '',
+      address2: '',
+      state: '',
+      city: '',
+      zipCode: ''
+    },
+    validationSchema: Yup.object({
+      address: Yup.string().required('Street Address is required.'),
+      state: Yup.string().required('State is required.'),
+      city: Yup.string().required('City is required.'),
+      zipCode: Yup.string().required('Zip Code is required.')
+        .matches(/^\d{5}(?:[-\s]\d{4})?$/, 'Please input a valid code.')
+    }),
+    onSubmit: () => {
+      return true;
+    }
   });
 
   useEffect(() => setIsVerified(false), []);
@@ -64,10 +87,11 @@ const Apply = () => {
     else if (step === STEPS.VERIFY_ID) setStep(STEPS.VERIFY_ID__RESULT);
     else if (step === STEPS.VERIFY_ID__RESULT) setStep(STEPS.INFO__PERSONAL);
     else if (step === STEPS.INFO__PERSONAL) {
-      formikPersonal.handleSubmit();
-      // setStep(STEPS.INFO__ADDRESS);
+      if (formikPersonal.handleSubmit()) setStep(STEPS.INFO__ADDRESS);
     }
-    else if (step === STEPS.INFO__ADDRESS) setStep(STEPS.INFO__ADDITIONAL);
+    else if (step === STEPS.INFO__ADDRESS) {
+      if (formikAddress.handleSubmit()) setStep(STEPS.INFO__ADDITIONAL);
+    }
   };
 
   const getButtonText = () => {
@@ -92,6 +116,8 @@ const Apply = () => {
           <VerifyIDResult />
         ) : step === STEPS.INFO__PERSONAL ? (
           <InfoPersonal formik={formikPersonal} />
+        ) : step === STEPS.INFO__ADDRESS ? (
+          <InfoAddress formik={formikAddress} />
         ) : null}
 
         <div className={styles.apply__footer}>

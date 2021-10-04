@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './TextInput.module.scss';
 import { ReactComponent as AlertIcon } from '../../assets/images/Alert.svg';
 
@@ -16,6 +16,15 @@ const TextInput = ({
   onClickInfo = () => null,
   onChange = () => null
 }) => {
+  const [value, setValue] = useState(initValue);
+
+  useEffect(() => setValue(initValue), [initValue]);
+
+  const handleChangeValue = ({ target: { value } }) => {
+    setValue(value);
+    onChange(value);
+  };
+
   return (
     <div className={clsx(className, styles.text_input__wrapper)}>
       <label className={clsx(
@@ -32,6 +41,8 @@ const TextInput = ({
           isError && styles['text_input--error']
         )}
         placeholder={placeholder}
+        value={value}
+        onChange={handleChangeValue}
       />
 
       {optional ? null : (
