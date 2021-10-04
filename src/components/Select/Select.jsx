@@ -27,6 +27,7 @@ const Select = ({
     const option = options.filter(option => initValue === option.value)[0];
 
     setOption(option || { value: '', label: placeholder });
+    // eslint-disable-next-line
   }, [initValue]);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const Select = ({
       optional ? [{ value: '', label: placeholder }] : [],
       initOptions
     ))
+    // eslint-disable-next-line
   }, [initOptions]);
 
   const handleChangeValue = value => {
