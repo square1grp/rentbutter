@@ -2,6 +2,10 @@ import React from 'react';
 import styles from './InfoAddress.module.scss';
 import { ReactComponent as InfoAddressIcon } from '../../../../assets/images/Info Address.svg';
 import TextInput from '../../../../components/TextInput';
+import Select from '../../../../components/Select';
+import getStates from '../../../../utils/getStates';
+
+const STATES = getStates();
 
 const InfoAddress = ({ formik }) => (
   <div className={styles.info}>
@@ -37,11 +41,12 @@ const InfoAddress = ({ formik }) => (
         onChange={value => formik.setFieldValue('address2', value)}
       />
 
-      <TextInput
+      <Select
         className={styles.info__input}
         label='State'
         placeholder='State'
-        value={formik.values.state}
+        options={Object.keys(STATES).map(abbr => ({ value: abbr, label: STATES[abbr] }))}
+        // value={formik.values.state}
         onChange={value => formik.setFieldValue('state', value)}
         isError={formik.touched.state && formik.errors.state}
         caption={formik.errors.state}

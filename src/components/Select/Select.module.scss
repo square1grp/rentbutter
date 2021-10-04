@@ -1,0 +1,145 @@
+@import "/src/assets/scss/shared";
+
+.select {
+  @include display-flex {
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 20px 15px 15px;
+    margin-bottom: 4px;
+    font-size: 16px;
+    line-height: 16px;
+    border: 1px solid #999999;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    color: #111;
+  }
+
+  &--placeholder {
+    color: #666;
+  }
+
+  &--error {
+    border-color: #cc0000;
+  }
+
+  &__wrapper {
+    @include display-flex(column) {
+      position: relative;
+    }
+  }
+
+  &__label {
+    @include display-flex {
+      position: absolute;
+      top: -4px;
+      left: 10px;
+      font-size: 8px;
+      line-height: 8px;
+      padding: 1px 5px;
+      background-color: #fff;
+    }
+
+    span {
+      font-family: "Helvetica-Bold";
+      color: #111111;
+    }
+
+    &--error {
+      &,
+      span {
+        color: #cc0000;
+      }
+    }
+
+    i {
+      font-family: "Helvetica-Oblique";
+    }
+  }
+
+  &__info {
+    left: unset;
+    right: 10px;
+    cursor: pointer;
+
+    span {
+      color: #2e85d6;
+    }
+
+    &__icon {
+      width: auto;
+      height: 8px;
+      margin-top: -1px;
+      fill: #2e85d6;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    left: 0px;
+    top: 50px;
+    right: 0px;
+    border: 1px solid transparent;
+    border-top: none;
+    background-color: #fff;
+    max-height: 0px;
+    overflow: hidden;
+    z-index: 10;
+    font-size: 14px;
+    line-height: 20px;
+    transition-duration: 0.2s;
+
+    &--opened {
+      top: 40px;
+      max-height: 200px;
+      overflow: auto;
+      border-color: #999999;
+    }
+
+    &__icon {
+      width: 10px;
+      fill: #999999;
+      transition-duration: 0.2s;
+
+      &--opened {
+        transform: rotate(180deg);
+      }
+    }
+
+    &__item {
+      cursor: pointer;
+      padding: 3px 15px;
+
+      &:hover,
+      &--selected {
+        background-color: #111111;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.caption {
+  @include display-flex {
+    align-items: center;
+    font-size: 9px;
+    line-height: 12px;
+    height: 10px;
+    color: #cc0000;
+    padding-left: 4px;
+  }
+
+  &--hidden {
+    visibility: hidden;
+  }
+
+  &__icon {
+    width: auto;
+    height: 10px;
+
+    path {
+      fill: #cc0000;
+    }
+  }
+}

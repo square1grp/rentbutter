@@ -24,7 +24,7 @@ const STEPS = {
 };
 
 const Apply = () => {
-  const [step, setStep] = useState(STEPS.INFO__ADDITIONAL);
+  const [step, setStep] = useState(STEPS.READY);
   const [isVerified, setIsVerified] = useState();
 
   const formikPersonal = useFormik({
@@ -108,6 +108,7 @@ const Apply = () => {
       if (formikPersonal.handleSubmit()) setStep(STEPS.INFO__ADDRESS);
     } else if (step === STEPS.INFO__ADDRESS) {
       if (formikAddress.handleSubmit()) setStep(STEPS.INFO__ADDITIONAL);
+
     } else if (step === STEPS.INFO__ADDITIONAL) formikAdditional.handleSubmit();
   };
 
