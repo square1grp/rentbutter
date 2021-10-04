@@ -1,0 +1,27 @@
+@import "/src/assets/scss/shared";
+
+.info {
+  @include display-flex(column);
+
+  &__icon {
+    margin: 0px auto 7px;
+  }
+
+  &__heading {
+    font-family: "Helvetica-Bold";
+    font-size: 22px;
+    line-height: 26px;
+    color: #111111;
+    margin-bottom: 4px;
+  }
+
+  &__sub_heading {
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 12px;
+  }
+
+  &__input {
+    margin-bottom: 5px;
+  }
+}
