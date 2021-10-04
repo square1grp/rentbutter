@@ -67,6 +67,7 @@ const InfoPersonal = ({ formik }) => (
         isError={formik.touched.driverLicense && formik.errors.driverLicense}
         caption={formik.errors.driverLicense}
         optional
+        optText='(not required)'
       />
 
     </form>

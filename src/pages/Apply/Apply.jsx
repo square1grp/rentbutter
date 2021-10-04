@@ -4,7 +4,7 @@ import {
   Ready,
   UploadIDFront, UploadIDBack,
   VerifyID, VerifyIDResult,
-  InfoPersonal, InfoAddress
+  InfoPersonal, InfoAddress, InfoAdditional
 } from './steps';
 import styles from './Apply.module.scss';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,7 @@ const STEPS = {
 };
 
 const Apply = () => {
-  const [step, setStep] = useState(STEPS.INFO__ADDRESS);
+  const [step, setStep] = useState(STEPS.INFO__ADDITIONAL);
   const [isVerified, setIsVerified] = useState();
 
   const formikPersonal = useFormik({
@@ -66,6 +66,24 @@ const Apply = () => {
     }
   });
 
+  const formikAdditional = useFormik({
+    initialValues: {
+      email: '',
+      phone: '',
+      identity: ''
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().required('Email Address is required.')
+        .email('Please input a valid email.'),
+      phone: Yup.string().required('Mobile Phone is required.')
+        .matches(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/),
+      identity: Yup.string().required('SSN / ITN is required.')
+    }),
+    onSubmit: () => {
+      return true;
+    }
+  });
+
   useEffect(() => setIsVerified(false), []);
 
   const handleClickBack = () => {
@@ -88,10 +106,9 @@ const Apply = () => {
     else if (step === STEPS.VERIFY_ID__RESULT) setStep(STEPS.INFO__PERSONAL);
     else if (step === STEPS.INFO__PERSONAL) {
       if (formikPersonal.handleSubmit()) setStep(STEPS.INFO__ADDRESS);
-    }
-    else if (step === STEPS.INFO__ADDRESS) {
+    } else if (step === STEPS.INFO__ADDRESS) {
       if (formikAddress.handleSubmit()) setStep(STEPS.INFO__ADDITIONAL);
-    }
+    } else if (step === STEPS.INFO__ADDITIONAL) formikAdditional.handleSubmit();
   };
 
   const getButtonText = () => {
@@ -118,6 +135,8 @@ const Apply = () => {
           <InfoPersonal formik={formikPersonal} />
         ) : step === STEPS.INFO__ADDRESS ? (
           <InfoAddress formik={formikAddress} />
+        ) : step === STEPS.INFO__ADDITIONAL ? (
+          <InfoAdditional formik={formikAdditional} />
         ) : null}
 
         <div className={styles.apply__footer}>

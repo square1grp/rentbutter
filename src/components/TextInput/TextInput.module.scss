@@ -21,13 +21,15 @@
   }
 
   &__label {
-    position: absolute;
-    top: -4px;
-    left: 10px;
-    font-size: 8px;
-    line-height: 8px;
-    padding: 1px 5px;
-    background-color: #fff;
+    @include display-flex {
+      position: absolute;
+      top: -4px;
+      left: 10px;
+      font-size: 8px;
+      line-height: 8px;
+      padding: 1px 5px;
+      background-color: #fff;
+    }
 
     span {
       font-family: "Helvetica-Bold";
@@ -43,6 +45,23 @@
 
     i {
       font-family: "Helvetica-Oblique";
+    }
+  }
+
+  &__info {
+    left: unset;
+    right: 10px;
+    cursor: pointer;
+
+    span {
+      color: #2e85d6;
+    }
+
+    &__icon {
+      width: auto;
+      height: 8px;
+      margin-top: -1px;
+      fill: #2e85d6;
     }
   }
 }

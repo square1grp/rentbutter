@@ -16,6 +16,7 @@
 
 .modal {
   @include display-flex(column) {
+    position: relative;
     width: 360px;
     height: 603px;
     background-color: #fff;

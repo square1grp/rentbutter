@@ -10,7 +10,9 @@ const TextInput = ({
   value: initValue = '',
   placeholder = '',
   caption = '',
+  optText = '',
   optional = false,
+  InfoIcon = React.Fragment,
   infoLabel = '',
   isError = false,
   onClickInfo = () => null,
@@ -32,8 +34,21 @@ const TextInput = ({
         isError && styles['text_input__label--error']
       )} >
         <span>{label}</span>
-        {optional ? <i> (not required)</i> : null}
+        {optional && optText ? <i>&nbsp;{optText}</i> : null}
       </label>
+
+      {infoLabel ? (
+        <label
+          className={clsx(
+            styles.text_input__label,
+            styles.text_input__info
+          )}
+          onClick={onClickInfo}
+        >
+          <InfoIcon className={styles.text_input__info__icon} />
+          <span>&nbsp;{infoLabel}</span>
+        </label>
+      ) : null}
 
       <input
         className={clsx(

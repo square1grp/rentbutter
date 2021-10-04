@@ -2,10 +2,15 @@ import React, { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styles from './Modal.module.scss';
 import { useScrollLock } from '../../hooks';
+import clsx from 'clsx';
 
 export const transitionTimeout = 200;
 
-const Modal = ({ show = false, onClose = () => null, children }) => {
+const Modal = ({
+  classNames = { container: '', modal: '' },
+  show = false,
+  children
+}) => {
   const modalRef = useRef(null);
   const containerRef = useRef(null);
   useScrollLock(show);
@@ -23,7 +28,7 @@ const Modal = ({ show = false, onClose = () => null, children }) => {
       }}
       unmountOnExit
     >
-      <div className={styles.container} ref={containerRef}>
+      <div className={clsx(classNames.container, styles.container)} ref={containerRef}>
         <CSSTransition
           nodeRef={modalRef}
           in={show}
@@ -39,7 +44,7 @@ const Modal = ({ show = false, onClose = () => null, children }) => {
           <div
             role='dialog'
             aria-modal='true'
-            className={styles.modal}
+            className={clsx(classNames.modal, styles.modal)}
             ref={modalRef}
           >
             {children}
